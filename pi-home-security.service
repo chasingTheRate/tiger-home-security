@@ -1,0 +1,22 @@
+[Unit]
+Description=Pi Home Security
+After=network-online.target
+Requires=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/node /home/pi/apps/pi-home-security/Core.js
+# Required on some systems
+WorkingDirectory=/home/pi/apps/pi-home-security
+Restart=always
+ # Restart service after 10 seconds if node service crashes
+ RestartSec=10
+ # Output to syslog
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=PiHomeSecurity
+#User=<alternate user>
+#Group=<alternate group>
+# Environment=NODE_ENV=production PORT=8081
+
+[Install]
+WantedBy=multi-user.target
